@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
-
-* TODO: Describe initial release.
+## [0.1.0] - 2021-03-13
+* Task: Initial release.
+* Task: License added.
+* Task: Change log Updated.
