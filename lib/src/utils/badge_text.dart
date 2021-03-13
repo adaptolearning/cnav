@@ -41,7 +41,7 @@ class BadgeText extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             )
-          : Container(),
+          : SizedBox(),
     );
   }
 }

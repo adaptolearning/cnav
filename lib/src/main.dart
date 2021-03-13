@@ -42,6 +42,7 @@ class CNav extends StatefulWidget {
     this.isFloating = false,
     this.blurEffect = false,
     this.opacity = 0.8,
+    this.floatingPadding = 0.0,
   })  : assert(scaleFactor <= 0.5, 'Scale factor must smaller than 0.5'),
         assert(scaleFactor > 0, 'Scale factor must bigger than 0'),
         assert(0 <= currentIndex && currentIndex < items.length),
@@ -57,6 +58,12 @@ class CNav extends StatefulWidget {
   /// default is false
   ///
   final bool isFloating;
+
+  ///
+  /// boolean that control if navigation bar perform floating.
+  /// default is false
+  ///
+  final double floatingPadding;
 
   ///
   /// Border radius for naviagtion bar
@@ -222,14 +229,14 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
     // unselected
     if (index != widget.currentIndex) {
       if (widget.items[index].title == null && widget.isFloating) {
-        return Container();
+        return SizedBox();
       } else {
         return widget.items[index].title ?? Text('');
       }
     } else {
       //selected
       if (widget.isFloating && widget.items[index].title == null) {
-        return Container();
+        return SizedBox();
       } else {
         return widget.items[index].selectedTitle ?? Text('');
       }
@@ -286,31 +293,30 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
     Widget bar = Material(
       color: widget.backgroundColor,
       elevation: widget.elevation,
-      borderRadius: BorderRadius.all(
-        widget.borderRadius,
-      ),
+      borderRadius: BorderRadius.all(widget.borderRadius),
       child: Container(
         height: height,
-        width: MediaQuery.of(context).size.width,
+        width: SizeUtil.screenWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            for (var i = 0; i < widget.items.length; i++)
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  widget.onTap!(i);
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _buildIcon(i),
-                    _buildLabel(i),
-                  ],
-                ),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: List<Widget>.generate(
+            widget.items.length,
+            (i) => GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                widget.onTap!(i);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _buildIcon(i),
+                  _buildLabel(i),
+                ],
               ),
-          ],
+            ),
+          ).toList(),
         ),
       ),
     );
@@ -319,15 +325,14 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
       return Padding(
         padding: widget.isFloating
             ? EdgeInsets.only(
-                left: getProportionateScreenWidth(16.0),
-                right: getProportionateScreenWidth(16.0),
+                left: getProportionateScreenWidth(widget.floatingPadding),
+                right: getProportionateScreenWidth(widget.floatingPadding),
                 top: 0,
-                bottom: additionalBottomPadding)
+                bottom: additionalBottomPadding,
+              )
             : EdgeInsets.zero,
         child: ClipRRect(
-          borderRadius: BorderRadius.all(
-            widget.borderRadius,
-          ),
+          borderRadius: BorderRadius.all(widget.borderRadius),
           child: BackdropFilter(
             filter: ImageFilter.blur(
               sigmaX: 5.0,
@@ -344,7 +349,11 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
       return Padding(
         padding: widget.isFloating
             ? EdgeInsets.only(
-                left: 16, right: 16, top: 0, bottom: additionalBottomPadding)
+                left: getProportionateScreenWidth(widget.floatingPadding),
+                right: getProportionateScreenWidth(widget.floatingPadding),
+                top: 0,
+                bottom: additionalBottomPadding,
+              )
             : EdgeInsets.zero,
         child: bar,
       );
