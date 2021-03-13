@@ -2,19 +2,7 @@
 
 A `custom navigation bar` a.k.a `CNav` with bubble click effect.<br>
 
-
-<a href="https://github.com/prodevplus/cnav"><img alt="GitHub license" src="https://img.shields.io/github/license/prodevplus/cnav?style=for-the-badge"></a>
-
-[![pub package](https://img.shields.io/pub/v/cnav)](https://pub.dev/packages/cnav) 
-
-[![License: MIT](https://img.shields.io/badge/license-MIT-purple.svg)](https://opensource.org/licenses/MIT)
-
-
-<a href="https://github.com/prodevplus/cnav/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/prodevplus/cnav?style=for-the-badge"></a> 
-
-<img alt="GitHub issues" src="https://img.shields.io/github/issues/prodevplus/cnav?style=for-the-badge"></a> <a href="https://github.com/prodevplus/cnav/network">
-
-<img alt="GitHub forks" src="https://img.shields.io/github/forks/prodevplus/cnav?style=for-the-badge"></a><a href="https://github.com/prodevplus/cnav/issues"> 
+[![pub package](https://img.shields.io/pub/v/cnav?style=for-the-badge)](https://pub.dev/packages/cnav) [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg?style=for-the-badge)](https://opensource.org/licenses/MIT) <a href="https://github.com/prodevplus/cnav/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/prodevplus/cnav?style=for-the-badge"></a> <img alt="GitHub forks" src="https://img.shields.io/github/forks/prodevplus/cnav?style=for-the-badge"></a><a href="https://github.com/prodevplus/cnav/issues">  <img alt="GitHub issues" src="https://img.shields.io/github/issues/prodevplus/cnav?style=for-the-badge"></a> <a href="https://github.com/prodevplus/cnav/network">
 
 
 
@@ -98,11 +86,11 @@ dependencies:
 ## Documentation
 
 ### **Attention** 
-**If you update from version under `0.6.0`, there are some breaking changes in the version `0.6.0`. The `icon` in `CustomNavigationBarItem` has changed from `IconData` to `Widget`**.
+**If you update from version under `0.6.0`, there are some breaking changes in the version `0.6.0`. The `icon` in `CNavItem` has changed from `IconData` to `Widget`**.
 
 old version
 ```dart
-CustomNavigationBarItem(
+CNavItem(
       {@required this.icon,
       IconData selectedIcon,
       this.selectedTitle,
@@ -120,7 +108,7 @@ CustomNavigationBarItem(
 
 new version
 ```dart
-CustomNavigationBarItem(
+CNavItem(
       {@required this.icon,
       Widget selectedIcon,
       this.title,
@@ -144,44 +132,44 @@ CustomNavigationBarItem(
 | Attributes | Type | Description | Default |
 | -------------------- | -------------- | ---------------- | --------------- |
 |    `scaleFactor` | `double`   | scale factor for the icon scale animation. | 0.2 |
-| `elevation`   | `double` | The z-coordinate of this CustomNavigationBar | 8.0 |
-| `items`   | `List` | item data in CustomNavigationBar  | required |
-| `selectedColor`   | `Color` | [Color] when [CustomNavigationBarItem] is selected  | [blueAccent] |
-| `unSelectedColor`   | `Color` | [Color] when [CustomNavigationBarItem] is not selected.  | grey[600] |
+| `elevation`   | `double` | The z-coordinate of this CNav | 8.0 |
+| `items`   | `List` | item data in CNav  | required |
+| `selectedColor`   | `Color` | [Color] when [CNavItem] is selected  | [blueAccent] |
+| `unSelectedColor`   | `Color` | [Color] when [CNavItem] is not selected.  | grey[600] |
 | `onTap`  | `Function(int)` | callback function when item tapped | null |
 | `currentIndex`  | `int` | current index of navigation bar. | 0 |
 | `iconSize`  | `double` | size of icon. also represent the max radius of bubble effect animation. | 24.0 |
-| `backgroundColor`  | `Color` | Background color of [CustomNavigationBar] | Colors.white |
+| `backgroundColor`  | `Color` | Background color of [CNav] | Colors.white |
 | `strokeColor`  | `Color` | stroke color | blueAccent |
 | `bubbleCurve`  | `Curve` | animation curve of bubble effect | linear |
 | `scaleCurve`  | `Curve` | animation curve of scale effect | linear |
 | `borderRadius`  | `Radius` | border radius of navigation bar | Radius.zero |
-| `isFloating`  | `bool` | control if CustomNavigationBar is floating | false |
-| `blurEffect`  | `bool` | control if CustomNavigationBar show blur effect | false |
-| `opacity`  | `double` | control CustomNavigationBar blur effect opacity when `blurEffect` is true | 0.8 |
+| `isFloating`  | `bool` | control if CNav is floating | false |
+| `blurEffect`  | `bool` | control if CNav show blur effect | false |
+| `opacity`  | `double` | control CNav blur effect opacity when `blurEffect` is true | 0.8 |
 
 
 **Attention**: If you set ```isFloating``` to  ```true```, I would recommand you to set ```extendBody``` to ```true``` in ```Scaffold``` for a better performance.
 
-And for customize icon in the navigation bar, just put the icons you want in the ```CustomNavigationBarItem``` like this.
+And for customize icon in the navigation bar, just put the icons you want in the ```CNavItem``` like this.
 ```dart
-CustomNavigationBar(
+CNav(
         ...
         items: [
-          CustomNavigationBarItem(
+          CNavItem(
           icon: Icon(Icons.home),
           title: Text("hello"),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.shopping_cart),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.lightbulb_outline),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.search),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.account_circle),
         ),
         ],
@@ -191,30 +179,30 @@ CustomNavigationBar(
 
 If you want add notification badge, just use like this
 ```dart
-CustomNavigationBar(
+CNav(
         ...
         items: [
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.home),
           badgeCount: _badgeCounts[0],
           showBadge: _badgeShows[0],
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.shopping_bag),
           badgeCount: _badgeCounts[1],
           showBadge: _badgeShows[1],
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.lightbulb_outline),
           badgeCount: _badgeCounts[2],
           showBadge: _badgeShows[2],
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.search),
           badgeCount: _badgeCounts[3],
           showBadge: _badgeShows[3],
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.account_circle),
           badgeCount: _badgeCounts[4],
           showBadge: _badgeShows[4],
@@ -228,30 +216,30 @@ To clear a badge, set `showBadge` to `false`
 
 If you want add title under icon, just use like this
 ```dart
-CustomNavigationBar(
+CNav(
       iconSize: 30.0,
       selectedColor: Color(0xff040307),
       strokeColor: Color(0x30040307),
       unSelectedColor: Color(0xffacacac),
       backgroundColor: Colors.white,
       items: [
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.home),
           title: Text("Home"),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.shopping_cart),
           title: Text("Cart"),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.lightbulb_outline),
           title: Text("Explore"),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.search),
           title: Text("Search"),
         ),
-        CustomNavigationBarItem(
+        CNavItem(
           icon: Icon(Icons.account_circle),
           title: Text("Me"),
         ),

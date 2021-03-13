@@ -1,8 +1,7 @@
 name: cnav
-description: A new Flutter package project.
-version: 0.0.1
-author:
-homepage: https://plugins.prodevplus.com/cnav
+description: A custom navigation bar a.k.a `CNav` with bubble click and many templates / theme to use effect.
+version: 0.1.0
+homepage: https://packages.prodevplus.com/cnav
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
