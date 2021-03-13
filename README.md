@@ -2,12 +2,7 @@
 
 A `custom navigation bar` a.k.a `CNav` with bubble click effect.<br>
 
-
-<!-- <a href="https://github.com/prodevplus/cnav"><img alt="GitHub license" src="https://img.shields.io/github/license/prodevplus/cnav?style=for-the-badge"></a> -->
-
-<!-- [![pub package](https://img.shields.io/pub/v/cnav)](https://pub.dev/packages/cnav)  -->
-
-[![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg?style=for-the-badge)](https://opensource.org/licenses/MIT) <a href="https://github.com/prodevplus/cnav/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/prodevplus/cnav?style=for-the-badge"></a> <img alt="GitHub issues" src="https://img.shields.io/github/issues/prodevplus/cnav?style=for-the-badge"></a> <a href="https://github.com/prodevplus/cnav/network"> <img alt="GitHub forks" src="https://img.shields.io/github/forks/prodevplus/cnav?style=for-the-badge"></a><a href="https://github.com/prodevplus/cnav/issues"> 
+[![pub package](https://img.shields.io/pub/v/cnav?style=for-the-badge)](https://pub.dev/packages/cnav) [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg?style=for-the-badge)](https://opensource.org/licenses/MIT) <a href="https://github.com/prodevplus/cnav/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/prodevplus/cnav?style=for-the-badge"></a> <img alt="GitHub forks" src="https://img.shields.io/github/forks/prodevplus/cnav?style=for-the-badge"></a><a href="https://github.com/prodevplus/cnav/issues">  <img alt="GitHub issues" src="https://img.shields.io/github/issues/prodevplus/cnav?style=for-the-badge"></a> <a href="https://github.com/prodevplus/cnav/network">
 
 
 
