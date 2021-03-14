@@ -81,32 +81,10 @@ Implemented:<br>
 Add this to your package's pubspec.yaml file:
 ```yaml
 dependencies:
-  cnav: lastest version
+  cnav: <latest version>
 ```
 ## Documentation
 
-### **Attention** 
-**If you update from version under `0.6.0`, there are some breaking changes in the version `0.6.0`. The `icon` in `CNavItem` has changed from `IconData` to `Widget`**.
-
-old version
-```dart
-CNavItem(
-      {@required this.icon,
-      IconData selectedIcon,
-      this.selectedTitle,
-      this.unSelectedTitle,
-      this.badgeCount = 0,
-      this.showBadge = true})
-      : selectedIcon = selectedIcon ?? icon;
-
-  ///
-  /// The icon of the item
-  /// Typically the icon is an [Icon].
-  ///
-  final IconData icon;
-```
-
-new version
 ```dart
 CNavItem(
       {@required this.icon,
@@ -149,7 +127,7 @@ CNavItem(
 | `opacity`  | `double` | control CNav blur effect opacity when `blurEffect` is true | 0.8 |
 
 
-**Attention**: If you set ```isFloating``` to  ```true```, I would recommand you to set ```extendBody``` to ```true``` in ```Scaffold``` for a better performance.
+**Attention**: If you set ```isFloating``` to  ```true```, I would recommend you to set ```extendBody``` to ```true``` in ```Scaffold``` for a better performance.
 
 And for customize icon in the navigation bar, just put the icons you want in the ```CNavItem``` like this.
 ```dart
