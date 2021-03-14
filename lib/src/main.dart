@@ -170,7 +170,7 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    if (_controller != null) _controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -256,15 +256,17 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
               widget.iconSize / 2,
               widget.iconSize / 2,
             )),
-        child: CNavTile(
-          iconSize: widget.iconSize,
-          scale: _sizes[index],
-          selected: index == widget.currentIndex,
-          item: widget.items[index],
-          selectedColor: widget.selectedColor ?? KUi.colors.defaultColor,
-          unSelectedColor:
-              widget.unSelectedColor ?? KUi.colors.defaultUnSelectedColor,
-          iconPadding: _itemPadding,
+        child: Center(
+          child: CNavTile(
+            iconSize: widget.iconSize,
+            scale: _sizes[index],
+            selected: index == widget.currentIndex,
+            item: widget.items[index],
+            selectedColor: widget.selectedColor ?? KUi.colors.defaultColor,
+            unSelectedColor:
+                widget.unSelectedColor ?? KUi.colors.defaultUnSelectedColor,
+            iconPadding: _itemPadding,
+          ),
         ),
       ),
     );
