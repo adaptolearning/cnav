@@ -99,14 +99,16 @@ dependencies:
 
 ```dart
 CNavItem(
-      {@required this.icon,
-      Widget selectedIcon,
-      this.title,
-      Text selectedTitle,
-      this.badgeCount = 0,
-      this.showBadge = false})
-      : selectedIcon = selectedIcon ?? icon,
-        selectedTitle = selectedTitle ?? title;
+  {
+    required this.icon,
+    Widget selectedIcon,
+    this.title,
+    Text selectedTitle,
+    this.badgeCount = 0,
+    this.showBadge = false,
+  })
+    : selectedIcon = selectedIcon ?? icon,
+      selectedTitle = selectedTitle ?? title;
 
   ///
   /// The icon of the item
