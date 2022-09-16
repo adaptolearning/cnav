@@ -15,39 +15,55 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import 'package:example/src/components/build_custom_svg_icons.dart';
+import 'package:example/src/components/build_floating_bar_section.dart';
+import 'package:example/src/components/build_light_section.dart';
+import 'package:example/src/components/build_notification_badge_section.dart';
+import 'package:example/src/components/build_origin_design_section.dart';
+import 'package:example/src/components/build_with_title_section.dart';
 import 'package:flutter/material.dart';
-import 'package:cnav/cnav.dart';
 
-void main() => runApp(MyApp());
+import 'src/components/build_with_and_without_label_section.dart';
+import 'src/components/build_blur_effect_section.dart';
+import 'src/components/build_border_radius_design_section.dart';
+import 'src/components/build_custom_svg_icons_with_label.dart';
+import 'src/components/build_no_elevation_section.dart';
+
+void main() => runApp(const MyApp());
 
 enum ThemeStyle {
-  Dribbble,
-  Light,
-  NoElevation,
-  Icons,
-  BorderRadius,
-  FloatingBar,
-  NotificationBadge,
-  WithTitle,
-  BlurEffect
+  dribbble,
+  light,
+  noElevation,
+  svgIcons,
+  svgIconsWithTitle,
+  borderRadius,
+  floatingBar,
+  notificationBadge,
+  withTitle,
+  withAndWithoutLabel,
+  blurEffect
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Custom Navigation Bar Example',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
-      home: MyHomePage(title: 'Example'),
+      home: const MyHomePage(title: 'CNav Demo'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
@@ -56,29 +72,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
-  ThemeStyle? _currentStyle = ThemeStyle.NotificationBadge;
-
-  List<int> _badgeCounts = List<int>.generate(5, (index) => index);
-
-  List<bool> _badgeShows = List<bool>.generate(5, (index) => true);
+  ThemeStyle? _currentStyle = ThemeStyle.notificationBadge;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBody for floating bar get better perfomance
+      // extendBody for floating bar get better performance
       extendBody: true,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(widget.title!),
-      ),
+      appBar: AppBar(title: Text(widget.title ?? "")),
+      bottomNavigationBar: _buildBottomNavigationBar(),
       body: Center(
         child: ListView(
           children: <Widget>[
             ListTile(
-              title: const Text('Notification badge'),
+              title: const Text('Dribbble Inspiration Version'),
               leading: Radio(
-                value: ThemeStyle.NotificationBadge,
+                value: ThemeStyle.dribbble,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -88,9 +98,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
-              title: const Text('Dribbble'),
+              title: const Text('Notification badge'),
               leading: Radio(
-                value: ThemeStyle.Dribbble,
+                value: ThemeStyle.notificationBadge,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -102,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('Light'),
               leading: Radio(
-                value: ThemeStyle.Light,
+                value: ThemeStyle.light,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -114,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('No elevation'),
               leading: Radio(
-                value: ThemeStyle.NoElevation,
+                value: ThemeStyle.noElevation,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -124,9 +134,21 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
-              title: const Text('Custom Icon from Ant Design'),
+              title: const Text('Custom Svg Icon (Heroicons 2)'),
               leading: Radio(
-                value: ThemeStyle.Icons,
+                value: ThemeStyle.svgIcons,
+                groupValue: _currentStyle,
+                onChanged: (ThemeStyle? value) {
+                  setState(() {
+                    _currentStyle = value;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: const Text('Custom Svg Icon with Labels (Heroicons 2)'),
+              leading: Radio(
+                value: ThemeStyle.svgIconsWithTitle,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -138,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('With border radius'),
               leading: Radio(
-                value: ThemeStyle.BorderRadius,
+                value: ThemeStyle.borderRadius,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -150,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('Floating Bar'),
               leading: Radio(
-                value: ThemeStyle.FloatingBar,
+                value: ThemeStyle.floatingBar,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -162,7 +184,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('With Title'),
               leading: Radio(
-                value: ThemeStyle.WithTitle,
+                value: ThemeStyle.withTitle,
+                groupValue: _currentStyle,
+                onChanged: (ThemeStyle? value) {
+                  setState(() {
+                    _currentStyle = value;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: const Text('With and Without Label'),
+              leading: Radio(
+                value: ThemeStyle.withAndWithoutLabel,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -174,7 +208,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('Blur Effect'),
               leading: Radio(
-                value: ThemeStyle.BlurEffect,
+                value: ThemeStyle.blurEffect,
                 groupValue: _currentStyle,
                 onChanged: (ThemeStyle? value) {
                   setState(() {
@@ -183,382 +217,38 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-            _buildBottomNavigationBar(),
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
   Widget _buildBottomNavigationBar() {
     switch (_currentStyle) {
-      case ThemeStyle.Dribbble:
-        return _buildOriginDesign();
-      case ThemeStyle.Light:
-        return _buildLightDesign();
-      case ThemeStyle.Icons:
-        return _buildCustomIconDesign();
-      case ThemeStyle.BorderRadius:
-        return _buildBorderRadiusDesign();
-      case ThemeStyle.FloatingBar:
-        return _buildFloatingBar();
-      case ThemeStyle.NoElevation:
-        return _buildNoElevation();
-      case ThemeStyle.NotificationBadge:
-        return _buildNotificationBadge();
-      case ThemeStyle.WithTitle:
-        return _buildTitle();
-      case ThemeStyle.BlurEffect:
-        return _buildBlurEffect();
+      case ThemeStyle.dribbble:
+        return const BuildOriginDesignSection();
+      case ThemeStyle.light:
+        return const BuildLightSection();
+      case ThemeStyle.svgIcons:
+        return const BuildCustomSvgIconsSection();
+      case ThemeStyle.svgIconsWithTitle:
+        return const BuildCustomSvgIconsWithLabelsSection();
+      case ThemeStyle.borderRadius:
+        return const BuildBorderRadiusDesignSection();
+      case ThemeStyle.floatingBar:
+        return const BuildFloatingBarSection();
+      case ThemeStyle.noElevation:
+        return const BuildNoElevationSection();
+      case ThemeStyle.notificationBadge:
+        return const BuildNotificationBadgeSection();
+      case ThemeStyle.withTitle:
+        return const BuildWithTitleSection();
+      case ThemeStyle.withAndWithoutLabel:
+        return const BuildWithAndWithoutLabelSection();
+      case ThemeStyle.blurEffect:
+        return const BuildBlurEffectSection();
       default:
-        return _buildOriginDesign();
+        return const BuildOriginDesignSection();
     }
-  }
-
-  Widget _buildTitle() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Color(0xff040307),
-      strokeColor: Color(0x30040307),
-      unSelectedColor: Color(0xffacacac),
-      backgroundColor: Colors.white,
-      items: [
-        CNavItem(
-          icon: Icon(Icons.home),
-          title: Text("Home"),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_cart),
-          title: Text("Cart"),
-        ),
-        CNavItem(
-          icon: Icon(Icons.lightbulb_outline),
-          title: Text("Explore"),
-        ),
-        CNavItem(
-          icon: Icon(Icons.search),
-          title: Text("Search"),
-        ),
-        CNavItem(
-          icon: Icon(Icons.account_circle),
-          title: Text("Me"),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget _buildNotificationBadge() {
-    print("notification");
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Color(0xff040307),
-      strokeColor: Color(0x30040307),
-      unSelectedColor: Color(0xffacacac),
-      backgroundColor: Colors.white,
-      items: [
-        CNavItem(
-          icon: Icon(Icons.home),
-          badgeCount: _badgeCounts[0],
-          showBadge: _badgeShows[0],
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_bag),
-          badgeCount: _badgeCounts[1],
-          showBadge: _badgeShows[1],
-        ),
-        CNavItem(
-          icon: Icon(Icons.lightbulb_outline),
-          badgeCount: _badgeCounts[2],
-          showBadge: _badgeShows[2],
-        ),
-        CNavItem(
-          icon: Icon(Icons.search),
-          badgeCount: _badgeCounts[3],
-          showBadge: _badgeShows[3],
-        ),
-        CNavItem(
-          icon: Icon(Icons.account_circle),
-          badgeCount: _badgeCounts[4],
-          showBadge: _badgeShows[4],
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-          _badgeShows[index] = false;
-        });
-      },
-    );
-  }
-
-  Widget _buildOriginDesign() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Colors.white,
-      strokeColor: Colors.white,
-      unSelectedColor: Color(0xff6c788a),
-      backgroundColor: Color(0xff040307),
-      items: [
-        CNavItem(
-          icon: Icon(Icons.home),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_cart),
-        ),
-        CNavItem(
-          icon: Icon(Icons.lightbulb_outline),
-        ),
-        CNavItem(
-          icon: Icon(Icons.search),
-        ),
-        CNavItem(
-          icon: Icon(Icons.account_circle),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget _buildLightDesign() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Color(0xff040307),
-      strokeColor: Color(0x30040307),
-      unSelectedColor: Color(0xffacacac),
-      backgroundColor: Colors.white,
-      items: [
-        CNavItem(
-          icon: Icon(Icons.home),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_cart),
-        ),
-        CNavItem(
-          icon: Icon(Icons.lightbulb_outline),
-        ),
-        CNavItem(
-          icon: Icon(Icons.search),
-        ),
-        CNavItem(
-          icon: Icon(Icons.account_circle),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget _buildNoElevation() {
-    return CNav(
-      elevation: 0.0,
-      iconSize: 30.0,
-      selectedColor: Color(0xff625aff),
-      strokeColor: Color(0xff625aff),
-      unSelectedColor: Colors.white,
-      backgroundColor: Color(0xffa9a5f2),
-      items: [
-        CNavItem(
-          icon: Icon(Icons.home),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_cart),
-        ),
-        CNavItem(
-          icon: Icon(Icons.lightbulb_outline),
-        ),
-        CNavItem(
-          icon: Icon(Icons.search),
-        ),
-        CNavItem(
-          icon: Icon(Icons.account_circle),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget _buildCustomIconDesign() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Color(0xff0c18fb),
-      strokeColor: Color(0x300c18fb),
-      unSelectedColor: Colors.grey[600],
-      backgroundColor: Colors.white,
-      items: [
-        CNavItem(
-          icon: Icon(
-            Icons.home,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_bag),
-        ),
-        CNavItem(
-          icon: Icon(Icons.cloud),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.search,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.person,
-          ),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget _buildBorderRadiusDesign() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Color(0xff0c18fb),
-      strokeColor: Color(0x300c18fb),
-      unSelectedColor: Colors.grey[600],
-      backgroundColor: Colors.white,
-      borderRadius: Radius.circular(20.0),
-      items: [
-        CNavItem(
-          icon: Icon(
-            Icons.home,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_bag),
-        ),
-        CNavItem(
-          icon: Icon(Icons.cloud),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.search,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.person,
-          ),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-    );
-  }
-
-  Widget _buildFloatingBar() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Color(0xff0c18fb),
-      strokeColor: Color(0x300c18fb),
-      unSelectedColor: Colors.grey[600],
-      backgroundColor: Colors.white,
-      borderRadius: Radius.circular(20.0),
-      items: [
-        CNavItem(
-          icon: Icon(
-            Icons.home,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_bag),
-        ),
-        CNavItem(
-          icon: Icon(Icons.cloud),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.search,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.person,
-          ),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      isFloating: true,
-    );
-  }
-
-  Widget _buildBlurEffect() {
-    return CNav(
-      iconSize: 30.0,
-      selectedColor: Colors.white,
-      strokeColor: Colors.white,
-      unSelectedColor: Colors.grey[600],
-      backgroundColor: Colors.black,
-      borderRadius: Radius.circular(20.0),
-      blurEffect: true,
-      opacity: 0.8,
-      items: [
-        CNavItem(
-          icon: Icon(
-            Icons.home,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(Icons.shopping_bag),
-        ),
-        CNavItem(
-          icon: Icon(Icons.cloud),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.search,
-          ),
-        ),
-        CNavItem(
-          icon: Icon(
-            Icons.person,
-          ),
-        ),
-      ],
-      currentIndex: _currentIndex,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
-      isFloating: true,
-    );
   }
 }

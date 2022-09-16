@@ -27,9 +27,11 @@ class CNav extends StatefulWidget {
   CNav({
     Key? key,
     required this.items,
+    this.margin,
+    this.padding,
     this.selectedColor,
     this.unSelectedColor,
-    this.onTap,
+    required this.onTap,
     this.currentIndex = 0,
     this.iconSize = 24.0,
     this.scaleFactor = 0.2,
@@ -66,7 +68,7 @@ class CNav extends StatefulWidget {
   final double floatingPadding;
 
   ///
-  /// Border radius for naviagtion bar
+  /// Border radius for navigation bar
   ///
   final Radius borderRadius;
 
@@ -95,7 +97,7 @@ class CNav extends StatefulWidget {
   ///
   /// callback function when item tapped
   ///
-  final Function(int)? onTap;
+  final Function(int) onTap;
 
   ///
   /// current index of navigation bar.
@@ -106,6 +108,11 @@ class CNav extends StatefulWidget {
   /// size of icon.
   /// also represent the max radius of bubble effect animation.
   final double iconSize;
+
+  ///
+  /// Margin and Padding Properties.
+  ///
+  final EdgeInsetsGeometry? margin, padding;
 
   ///
   /// Background color of [CustomNavigationBar]
@@ -166,6 +173,10 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
       return 0.0;
     });
     _maxRadius = widget.iconSize;
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+    );
   }
 
   @override
@@ -231,41 +242,75 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
       if (widget.items[index].title == null && widget.isFloating) {
         return SizedBox();
       } else {
-        return widget.items[index].title ?? Text('');
+        return widget.items[index].title ?? SizedBox();
       }
     } else {
       //selected
       if (widget.isFloating && widget.items[index].title == null) {
         return SizedBox();
       } else {
-        return widget.items[index].selectedTitle ?? Text('');
+        return widget.items[index].selectedTitle ?? SizedBox();
       }
     }
   }
 
   Widget _buildIcon(int index) {
-    return SizedBox(
-      height: widget.iconSize,
-      width: widget.iconSize,
-      child: CustomPaint(
-        painter: BeaconPainter(
+    return FittedBox(
+      child: Container(
+        margin: widget.margin ?? EdgeInsets.all(10),
+        height: ((widget.items[index].icon is Icon)
+                ? (widget.items[index].icon as Icon).size
+                : null) ??
+            widget.iconSize,
+        width: ((widget.items[index].icon is Icon)
+                ? (widget.items[index].icon as Icon).size
+                : null) ??
+            widget.iconSize,
+        child: CustomPaint(
+          painter: BeaconPainter(
             color: widget.strokeColor,
-            beaconRadius: _radiuses[index],
-            maxRadius: _maxRadius,
+            beaconRadius: ((widget.items[index].icon is Icon)
+                        ? (widget.items[index].icon as Icon).size
+                        : null) !=
+                    null
+                ? _radiuses[index] * 1.5
+                : _radiuses[index],
+            maxRadius: ((widget.items[index].icon is Icon)
+                        ? (widget.items[index].icon as Icon).size
+                        : null) !=
+                    null
+                ? _maxRadius * 1.5
+                : _maxRadius,
             offset: Offset(
-              widget.iconSize / 2,
-              widget.iconSize / 2,
-            )),
-        child: Center(
-          child: CNavTile(
-            iconSize: widget.iconSize,
-            scale: _sizes[index],
-            selected: index == widget.currentIndex,
-            item: widget.items[index],
-            selectedColor: widget.selectedColor ?? KUi.colors.defaultColor,
-            unSelectedColor:
-                widget.unSelectedColor ?? KUi.colors.defaultUnSelectedColor,
-            iconPadding: _itemPadding,
+              (((widget.items[index].icon is Icon)
+                          ? (widget.items[index].icon as Icon).size
+                          : null) ??
+                      widget.iconSize) /
+                  2,
+              (((widget.items[index].icon is Icon)
+                          ? (widget.items[index].icon as Icon).size
+                          : null) ??
+                      widget.iconSize) /
+                  2,
+            ),
+          ),
+          child: FittedBox(
+            child: Padding(
+              padding: widget.padding ?? EdgeInsets.zero,
+              child: CNavTile(
+                iconSize: (((widget.items[index].icon is Icon)
+                        ? (widget.items[index].icon as Icon).size
+                        : null) ??
+                    widget.iconSize),
+                scale: _sizes[index],
+                selected: index == widget.currentIndex,
+                item: widget.items[index],
+                selectedColor: widget.selectedColor ?? KUi.colors.defaultColor,
+                unSelectedColor:
+                    widget.unSelectedColor ?? KUi.colors.defaultUnSelectedColor,
+                iconPadding: _itemPadding,
+              ),
+            ),
           ),
         ),
       ),
@@ -292,13 +337,14 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
           (widget.items.length * 2);
     }
 
-    Widget bar = Material(
-      color: widget.backgroundColor,
-      elevation: widget.elevation,
-      borderRadius: BorderRadius.all(widget.borderRadius),
-      child: Container(
-        height: height,
-        width: SizeUtil.screenWidth,
+    Widget bar = Container(
+      margin: widget.margin ?? EdgeInsets.zero,
+      height: height,
+      width: SizeUtil.screenWidth,
+      child: Material(
+        color: widget.backgroundColor,
+        elevation: widget.elevation,
+        borderRadius: BorderRadius.all(widget.borderRadius),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -307,15 +353,24 @@ class _CNavState extends State<CNav> with TickerProviderStateMixin {
             (i) => GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
-                widget.onTap!(i);
+                widget.onTap(i);
               },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _buildIcon(i),
-                  _buildLabel(i),
-                ],
+              child: Center(
+                child: FittedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      (widget.items[i].title != null)
+                          ? Transform.scale(scale: 1.5, child: _buildIcon(i))
+                          : _buildIcon(i),
+                      _buildLabel(i),
+                      (widget.items[i].title != null)
+                          ? SizedBox(height: 10)
+                          : SizedBox(),
+                    ],
+                  ),
+                ),
               ),
             ),
           ).toList(),
