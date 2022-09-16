@@ -8,13 +8,13 @@ class CNavItem {
   final int badgeCount;
   final bool showBadge;
 
-  const CNavItem(
-      {required this.icon,
-      this.title,
-      Widget? selectedIcon,
-      Widget? selectedTitle,
-      this.badgeCount = 0,
-      this.showBadge = false})
-      : selectedIcon = selectedIcon ?? icon,
+  const CNavItem({
+    required this.icon,
+    this.title,
+    Widget? selectedIcon,
+    Widget? selectedTitle,
+    this.badgeCount = 0,
+    this.showBadge = false,
+  })  : selectedIcon = selectedIcon ?? icon,
         selectedTitle = selectedTitle ?? title;
 }

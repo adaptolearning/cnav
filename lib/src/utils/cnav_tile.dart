@@ -31,15 +31,17 @@ class CNavTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: 1.0 + scale!,
+      scale: 1.0 + (scale ?? 0.0),
       child: Stack(
         children: [
-          IconTheme(
-            data: IconThemeData(
-              color: selected! ? selectedColor : unSelectedColor,
-              size: iconSize,
+          Center(
+            child: IconTheme(
+              data: IconThemeData(
+                color: (selected ?? false) ? selectedColor : unSelectedColor,
+                size: iconSize,
+              ),
+              child: (selected ?? false) ? item.selectedIcon! : item.icon,
             ),
-            child: selected! ? item.selectedIcon! : item.icon,
           ),
           BadgeText(
             show: item.showBadge,

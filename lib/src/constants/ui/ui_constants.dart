@@ -1,7 +1,7 @@
 import 'package:cnav/src/constants/ui/color_constants.dart';
-import 'package:cnav/src/constants/ui/measuements_constants.dart';
+import 'package:cnav/src/constants/ui/measurements_constants.dart';
 
 class KUi {
   static KColors colors = KColors();
-  static const KMeasuements measurements = const KMeasuements();
+  static const KMeasurements measurements = const KMeasurements();
 }

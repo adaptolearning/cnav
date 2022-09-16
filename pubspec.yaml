@@ -1,6 +1,6 @@
 name: cnav
 description: A custom navigation bar a.k.a `CNav` with bubble click and many templates / theme to use effect.
-version: 0.1.2
+version: 1.0.0
 homepage: https://packages.prodevplus.com/cnav
 
 environment:
