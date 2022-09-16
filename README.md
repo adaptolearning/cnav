@@ -17,7 +17,7 @@ Dribbble:<br>
 <img src="https://cdn.dribbble.com/users/2114584/screenshots/7134849/media/96e4a6002a476bad7bd809ac71e28698.gif" width="400">
 
 Implemented:<br>
-<img src="./screenshot/6.gif" width="300">
+<img src="https://user-images.githubusercontent.com/13074740/190694868-8944e94d-dcf4-411a-87b1-90394cf9505d.gif" width="300">
 
 ## Gallery
 
@@ -26,63 +26,63 @@ Implemented:<br>
         <tr>
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/1.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694257-6364b2ec-78aa-459b-b80a-72e9b3561c55.gif" width="200"/>
                 </a>
             </td>            
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/2.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694542-e91fb7ed-91b3-4ef7-a22b-2dd642abe23e.gif" width="200"/>
                 </a>
             </td>  
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/3.gif" width="200"/>
-                </a>
-            </td>  
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                <a>
-                    <img src="./screenshot/4.gif" width="200"/>
-                </a>
-            </td>  
-            <td style="text-align: center">
-                <a>
-                    <img src="./screenshot/5.gif" width="200"/>
-                </a>
-            </td>  
-            <td style="text-align: center">
-                <a>
-                    <img src="./screenshot/6.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694666-2ceab1ad-88dd-49b2-ad41-4b29b2f523d4.gif" width="200"/>
                 </a>
             </td>  
         </tr>
         <tr>
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/7.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694689-b917abaa-f633-4bdd-8361-bae8d704fc3d.gif" width="200"/>
                 </a>
             </td>  
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/8.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694708-07f02664-c112-4174-9dff-2c984db5d47e.gif" width="200"/>
+                </a>
+            </td>  
+            <td style="text-align: center">
+                <a>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694868-8944e94d-dcf4-411a-87b1-90394cf9505d.gif" width="200"/>
+                </a>
+            </td>  
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                <a>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694884-2438257b-56f2-4600-b5d9-c4f3eeb3dc4f.gif" width="200"/>
+                </a>
+            </td>  
+            <td style="text-align: center">
+                <a>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694931-c3cb3a6b-9506-4b69-ad33-76b5a25b743c.gif" width="200"/>
                 </a>
             </td>
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/9.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190694987-5837e2e7-7d81-4c11-9c46-1ab78377b0cd.gif" width="200"/>
                 </a>
             </td>
         </tr>
         <tr>
         <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/10.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190695001-b083db20-cdbd-4893-955b-6d0d75b8d239.gif" width="200"/>
                 </a>
             </td>  
             <td style="text-align: center">
                 <a>
-                    <img src="./screenshot/11.gif" width="200"/>
+                    <img src="https://user-images.githubusercontent.com/13074740/190695011-547047f4-89e7-4627-84c2-2b70e6956944.gif" width="200"/>
                 </a>
             </td>
         </tr>
